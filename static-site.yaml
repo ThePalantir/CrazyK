@@ -1,0 +1,54 @@
+# STATIC WEBSITE: SINGLE-FILE HANDOFF TO THE PROJECT-BUILDING AGENT
+#
+# Read these comments before building. Complete the YAML below for the actual
+# project and return this same file as its deployment manifest. Keep these
+# instructions with it. Commit the file with any .yaml/.yml name, or give the
+# finished file to the user for separate upload. No second config or guide is needed.
+#
+# Build a production static website: HTML, CSS, JavaScript and assets that work
+# without a running application server. Do not add a server merely to host files.
+# The standard vite-static host preset runs npm ci and npm run build, packages
+# dist/, and uses the host's production static server. It does not run vite preview.
+# Keep package.json and its lockfile in rootDirectory. Declare real build output;
+# if a different output is needed, primary.artifacts can map it to destination: site.
+# Use repository-relative paths. Layout/design and application code remain yours.
+#
+# Prefer the server-site template if the project needs server-side authentication,
+# private API keys, dynamic server rendering, a database API, or other server code.
+# One server template can describe several services; do not ship two manifests.
+# Never embed credentials in browser code or in this YAML, including its comments.
+#
+# List environment NAMES below, with required, build and description. Values are
+# entered privately in the dashboard. Public build variables are browser-visible;
+# never use them for secrets. Only keys marked build: true reach the build process.
+# Do not declare PORT, HOST or HOSTNAME; the host assigns them. Avoid assumptions
+# about public addresses: the dashboard provides a hosted domain and HTTPS.
+#
+# Validate from a clean checkout using the locked install and production build.
+# Check local asset paths, case-sensitive filenames, SPA/navigation behavior,
+# responsive phone layouts, accessibility and a distinctive HTML title for health.
+# Do not rely on developer-local dependencies, absolute host paths or files outside
+# the repository. Host profiles, OS users, ports, units, routes and certificates
+# are managed by the dashboard. Docker/cloud/database provisioning is not implicit.
+# Resolve unsupported infrastructure before claiming the project can deploy.
+#
+# Finish this one file: replace placeholders, retain the schema fields, and do not
+# invent extra fields. Build/start overrides are arrays of arguments, not shell
+# scripts. No !include, anchors, multiple YAML documents or secret values.
+schemaVersion: 1
+kind: operations-project
+primary:
+  profile: vite-static
+  rootDirectory: .
+  healthPath: /
+  healthText: "Crazy K’s | Lehigh Valley DJ, Weddings & Photo Booth" # Matches site/index.html.
+  # The protected static preset installs locked dependencies, runs the build,
+  # publishes dist/, and serves it with the dashboard's production static server.
+services: []
+environment: []
+# Example public build variable (name only; supply its value in the dashboard):
+# environment:
+#   - key: VITE_API_URL
+#     required: true
+#     build: true
+#     description: Public URL of the separately deployed API; bundled into the site.
