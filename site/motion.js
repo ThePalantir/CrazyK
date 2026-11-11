@@ -40,8 +40,6 @@
   document.querySelectorAll('.packages,.values,.award-grid').forEach(group=>{group.classList.add('is-staggered');group.setAttribute('data-sc-stagger','55');[...group.children].forEach(e=>e.setAttribute('data-sc-in',''));});
   document.querySelectorAll('.booth-heading figure,.portrait,.booth-gallery figure').forEach(e=>{e.setAttribute('data-sc-in','');e.classList.add('photo-reveal');});
   document.querySelectorAll('main>section:not([data-sc-act])').forEach(e=>e.setAttribute('data-sc-act','flow'));
-  const mic=document.querySelector('.mic-art');
-  const micEq=document.createElement('div');micEq.className='mic-eq';micEq.setAttribute('aria-hidden','true');micEq.innerHTML='<i></i>'.repeat(20);mic.append(micEq);
   try {
     if(window.ScrollCraft&&typeof window.ScrollCraft.mount==='function'){
       window.ScrollCraft.mount(document.body);root.classList.add('motion-ready');
