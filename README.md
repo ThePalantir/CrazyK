@@ -2,7 +2,17 @@
 
 Review date: November 11, 2026. Original: https://www.crazykskaraoke.com/ . Design reference: https://kj-lehigh-website.truecore.services/ .
 
-Static site in `dist/`. Serve with `python -m http.server 4173 --directory dist`. No npm installation or build is required. Deploy `dist/` as the web root on any static host, including the TrueCore DigitalOcean stack. Preserve the `.openai/hosting.json` identity for Sites deployments.
+The authoritative static source is `site/`. Run `npm ci` and `npm run build` to copy it to `dist/`, then serve `dist/` as the web root. The build has no third-party npm dependencies. For a local Windows preview, double-click `Open Website Preview.cmd`. The existing `dist/` is also included as a convenience snapshot; rebuild it after source changes.
+
+## TrueCore Droplet dashboard handoff
+
+- Repository: `ThePalantir/CrazyK`; intended branch and commit must be selected explicitly in the dashboard.
+- Manifest: `static-site.yaml`, using the dashboard's `operations-project` schema and `vite-static` profile. This is not a DigitalOcean App Platform specification.
+- Root directory: `.`; install: `npm ci`; build: `npm run build`; output: `dist/`; health path: `/`. The manifest health text matches the page title.
+- No environment variables, application server, or additional services are needed for this static site. The dashboard supplies static serving, routing, and HTTPS; verify its capabilities and supported Node version before setup.
+- This is a review build: `noindex,nofollow` is present but does not restrict access. Configure and independently verify preview access controls in the host.
+- Record the dashboard project, preview hostname, build logs, deployed commit, external HTTPS and functional checks, and a verified rollback target. A GitHub push or successful local build does not establish that a Droplet release occurred.
+- Production launch requires separate approval and the content, form, SEO, privacy, accessibility, and verification checks below. The inquiry prepares an email in the visitor's app; it is not a durable server-side submission.
 
 ## Content migration map
 
